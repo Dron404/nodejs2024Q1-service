@@ -14,7 +14,7 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest --testPathIgnorePatterns refresh.e2e.spec.ts --noStackTrace --runInBand",
+    "test": "jest --testMatch \"<rootDir>/*.spec.ts\" --noStackTrace --runInBand",
     "test:track": "npx jest test/tracks.e2e.spec.ts",
     "test:user": "npx jest test/users.e2e.spec.ts",
     "test:artist": "npx jest test/artists.e2e.spec.ts",
