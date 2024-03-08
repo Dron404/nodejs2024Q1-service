@@ -19,7 +19,7 @@ export class TrackService {
     try {
       return await this.prisma.track.findUniqueOrThrow({ where: { id } });
     } catch (e) {
-      throw new NotFoundException(e.message);
+      throw new NotFoundException('Track not found');
     }
   }
 

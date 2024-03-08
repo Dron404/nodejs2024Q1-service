@@ -6,9 +6,10 @@ import { PrismaService } from './prisma/prisma.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { CryptoModule } from './crypto/crypto.module';
 import { TrackModule } from './track/track.module';
+import { ArtistModule } from './artist/artist.module';
 
 @Module({
-  imports: [UserModule, PrismaModule, CryptoModule, TrackModule],
+  imports: [UserModule, PrismaModule, CryptoModule, TrackModule, ArtistModule],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })
