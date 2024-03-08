@@ -9,8 +9,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:memory?mode=memory&cache=shared"
 }
 
 model User {
@@ -23,35 +23,44 @@ model User {
 }
 
 model Artist {
-  id     String  @id @default(uuid())
-  name   String
-  grammy Boolean
-  tracks Track[]
-  albums Album[]
+  id          String  @id @default(uuid())
+  name        String
+  grammy      Boolean
+  favoritesId String?
+  tracks      Track[]
+  albums      Album[]
+
+  Favorites Favorites? @relation(fields: [favoritesId], references: [id])
 }
 
 model Track {
-  id       String  @id @default(uuid())
-  name     String
-  artistId String? @map("artist_id")
-  albumId  String? @map("album_id")
-  duration Int
-  artist   Artist? @relation(fields: [artistId], references: [id])
-  album    Album?  @relation(fields: [albumId], references: [id])
+  id          String  @id @default(uuid())
+  name        String
+  artistId    String? @map("artist_id")
+  albumId     String? @map("album_id")
+  duration    Int
+  favoritesId String?
+
+  artist    Artist?    @relation(fields: [artistId], references: [id])
+  album     Album?     @relation(fields: [albumId], references: [id])
+  Favorites Favorites? @relation(fields: [favoritesId], references: [id])
 }
 
 model Album {
-  id       String  @id @default(uuid())
-  name     String
-  year     Int
-  artistId String? @map("artist_id")
-  artist   Artist? @relation(fields: [artistId], references: [id])
-  tracks   Track[]
+  id          String  @id @default(uuid())
+  name        String
+  year        Int
+  artistId    String? @map("artist_id")
+  favoritesId String?
+
+  artist    Artist?    @relation(fields: [artistId], references: [id])
+  tracks    Track[]
+  Favorites Favorites? @relation(fields: [favoritesId], references: [id])
 }
 
 model Favorites {
   id      String   @id @default(uuid())
-  artists String[]
-  albums  String[]
-  tracks  String[]
+  artists Artist[]
+  albums  Album[]
+  tracks  Track[]
 }
