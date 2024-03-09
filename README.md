@@ -13,7 +13,7 @@ npm install
 ```
 
 ## Init DB 
-### I user SQLite after restarting the application the database is cleared
+### I user SQLite, after restarting the application the database is cleared
 
 ```
 npx prisma migrate deploy
