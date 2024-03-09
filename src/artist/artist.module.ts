@@ -4,6 +4,7 @@ import { ArtistController } from './artist.controller';
 import { PrismaModule } from 'src/prisma/prisma.module';
 
 @Module({
+  exports: [ArtistService],
   imports: [PrismaModule],
   controllers: [ArtistController],
   providers: [ArtistService],

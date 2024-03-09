@@ -4,6 +4,7 @@ import { TrackController } from './track.controller';
 import { PrismaModule } from 'src/prisma/prisma.module';
 
 @Module({
+  exports: [TrackService],
   controllers: [TrackController],
   providers: [TrackService],
   imports: [PrismaModule],

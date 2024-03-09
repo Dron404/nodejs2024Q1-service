@@ -19,6 +19,7 @@
     "test:user": "npx jest test/users.e2e.spec.ts",
     "test:artist": "npx jest test/artists.e2e.spec.ts",
     "test:album": "npx jest test/albums.e2e.spec.ts",
+    "test:favs": "npx jest test/favorites.e2e.spec.ts",
     "test:auth": "cross-env TEST_MODE=auth jest --testPathIgnorePatterns refresh.e2e.spec.ts --noStackTrace --runInBand",
     "test:refresh": "cross-env TEST_MODE=auth jest --testPathPattern refresh.e2e.spec.ts --noStackTrace --runInBand",
     "test:watch": "jest --watch",
