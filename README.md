@@ -1,10 +1,5 @@
 # Home Library Service
 
-## Prerequisites
-
-- Git - [Download & Install Git](https://git-scm.com/downloads).
-- Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager.
-
 ## Downloading
 
 ```
@@ -18,14 +13,18 @@ npm install
 ```
 
 ## Init DB 
-,,,
+
+```
 npx prisma migrate deploy
-,,,
+```
+
 ## Running application
 
 ```
 npm start
 ```
+
+## You can use api.yaml or http://localhost:4000/doc to get Swagger documentation
 
 ## Testing
 
