@@ -6,7 +6,6 @@ import {
   Param,
   Delete,
   ParseUUIDPipe,
-  Response,
   Res,
   HttpStatus,
   Put,

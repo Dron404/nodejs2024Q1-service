@@ -2,8 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
-import { unlink } from 'fs/promises';
-import * as path from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -21,12 +19,6 @@ async function bootstrap() {
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
   );
   app.enableShutdownHooks();
-
-  //process.on('SIGINT', () => {
-  //  unlink(path.join(process.cwd(), './prisma/memory'));
-  //  unlink(path.join(process.cwd(), './prisma/memory-journal'));
-  //  app.close();
-  //});
 
   await app.listen(PORT);
   console.log(`App start on  port - ${PORT}`);
