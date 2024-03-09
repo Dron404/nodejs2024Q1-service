@@ -12,7 +12,9 @@ CREATE TABLE "User" (
 CREATE TABLE "Artist" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
-    "grammy" BOOLEAN NOT NULL
+    "grammy" BOOLEAN NOT NULL,
+    "favoritesId" TEXT,
+    CONSTRAINT "Artist_favoritesId_fkey" FOREIGN KEY ("favoritesId") REFERENCES "Favorites" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -22,8 +24,10 @@ CREATE TABLE "Track" (
     "artist_id" TEXT,
     "album_id" TEXT,
     "duration" INTEGER NOT NULL,
+    "favoritesId" TEXT,
     CONSTRAINT "Track_artist_id_fkey" FOREIGN KEY ("artist_id") REFERENCES "Artist" ("id") ON DELETE SET NULL ON UPDATE CASCADE,
-    CONSTRAINT "Track_album_id_fkey" FOREIGN KEY ("album_id") REFERENCES "Album" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+    CONSTRAINT "Track_album_id_fkey" FOREIGN KEY ("album_id") REFERENCES "Album" ("id") ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT "Track_favoritesId_fkey" FOREIGN KEY ("favoritesId") REFERENCES "Favorites" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -32,7 +36,14 @@ CREATE TABLE "Album" (
     "name" TEXT NOT NULL,
     "year" INTEGER NOT NULL,
     "artist_id" TEXT,
-    CONSTRAINT "Album_artist_id_fkey" FOREIGN KEY ("artist_id") REFERENCES "Artist" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+    "favoritesId" TEXT,
+    CONSTRAINT "Album_artist_id_fkey" FOREIGN KEY ("artist_id") REFERENCES "Artist" ("id") ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT "Album_favoritesId_fkey" FOREIGN KEY ("favoritesId") REFERENCES "Favorites" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Favorites" (
+    "id" TEXT NOT NULL PRIMARY KEY
 );
 
 -- CreateIndex
