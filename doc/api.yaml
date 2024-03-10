@@ -3,6 +3,7 @@ paths:
   /user:
     post:
       operationId: UserController_create
+      summary: Create user
       parameters: []
       requestBody:
         required: true
@@ -13,10 +14,15 @@ paths:
       responses:
         '201':
           description: ''
+        '400':
+          description: ''
+        '404':
+          description: ''
       tags:
         - User
     get:
       operationId: UserController_findAll
+      summary: Get all user
       parameters: []
       responses:
         '200':
@@ -26,6 +32,7 @@ paths:
   /user/{id}:
     get:
       operationId: UserController_findOne
+      summary: Get user by id
       parameters:
         - name: id
           required: true
@@ -35,10 +42,15 @@ paths:
       responses:
         '200':
           description: ''
+        '400':
+          description: ''
+        '404':
+          description: ''
       tags:
         - User
     put:
       operationId: UserController_update
+      summary: Change user password
       parameters:
         - name: id
           required: true
@@ -54,10 +66,15 @@ paths:
       responses:
         '200':
           description: ''
+        '400':
+          description: ''
+        '404':
+          description: ''
       tags:
         - User
     delete:
       operationId: UserController_remove
+      summary: Delete user
       parameters:
         - name: id
           required: true
@@ -65,13 +82,18 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
+          description: ''
+        '400':
+          description: ''
+        '404':
           description: ''
       tags:
         - User
   /track:
     post:
       operationId: TrackController_create
+      summary: Create track
       parameters: []
       requestBody:
         required: true
@@ -82,10 +104,15 @@ paths:
       responses:
         '201':
           description: ''
+        '400':
+          description: ''
+        '404':
+          description: ''
       tags:
         - Track
     get:
       operationId: TrackController_findAll
+      summary: Get all track
       parameters: []
       responses:
         '200':
@@ -95,6 +122,7 @@ paths:
   /track/{id}:
     get:
       operationId: TrackController_findOne
+      summary: Get track by id
       parameters:
         - name: id
           required: true
@@ -104,10 +132,15 @@ paths:
       responses:
         '200':
           description: ''
+        '400':
+          description: ''
+        '404':
+          description: ''
       tags:
         - Track
     put:
       operationId: TrackController_update
+      summary: Update track
       parameters:
         - name: id
           required: true
@@ -123,10 +156,15 @@ paths:
       responses:
         '200':
           description: ''
+        '400':
+          description: ''
+        '404':
+          description: ''
       tags:
         - Track
     delete:
       operationId: TrackController_remove
+      summary: Delete track
       parameters:
         - name: id
           required: true
@@ -134,13 +172,18 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
+          description: ''
+        '400':
+          description: ''
+        '404':
           description: ''
       tags:
         - Track
   /artist:
     post:
       operationId: ArtistController_create
+      summary: Create artist
       parameters: []
       requestBody:
         required: true
@@ -151,10 +194,15 @@ paths:
       responses:
         '201':
           description: ''
+        '400':
+          description: ''
+        '404':
+          description: ''
       tags:
         - Artist
     get:
       operationId: ArtistController_findAll
+      summary: Get all artist
       parameters: []
       responses:
         '200':
@@ -164,6 +212,7 @@ paths:
   /artist/{id}:
     get:
       operationId: ArtistController_findOne
+      summary: Get artist by id
       parameters:
         - name: id
           required: true
@@ -173,10 +222,15 @@ paths:
       responses:
         '200':
           description: ''
+        '400':
+          description: ''
+        '404':
+          description: ''
       tags:
         - Artist
     put:
       operationId: ArtistController_update
+      summary: Update artist
       parameters:
         - name: id
           required: true
@@ -192,10 +246,15 @@ paths:
       responses:
         '200':
           description: ''
+        '400':
+          description: ''
+        '404':
+          description: ''
       tags:
         - Artist
     delete:
       operationId: ArtistController_remove
+      summary: Delete artist
       parameters:
         - name: id
           required: true
@@ -203,13 +262,18 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
+          description: ''
+        '400':
+          description: ''
+        '404':
           description: ''
       tags:
         - Artist
   /album:
     post:
       operationId: AlbumController_create
+      summary: Create album
       parameters: []
       requestBody:
         required: true
@@ -220,10 +284,15 @@ paths:
       responses:
         '201':
           description: ''
+        '400':
+          description: ''
+        '404':
+          description: ''
       tags:
         - Album
     get:
       operationId: AlbumController_findAll
+      summary: Get all album
       parameters: []
       responses:
         '200':
@@ -233,6 +302,7 @@ paths:
   /album/{id}:
     get:
       operationId: AlbumController_findOne
+      summary: Get album by id
       parameters:
         - name: id
           required: true
@@ -242,10 +312,15 @@ paths:
       responses:
         '200':
           description: ''
+        '400':
+          description: ''
+        '404':
+          description: ''
       tags:
         - Album
     put:
       operationId: AlbumController_update
+      summary: Update album
       parameters:
         - name: id
           required: true
@@ -261,10 +336,15 @@ paths:
       responses:
         '200':
           description: ''
+        '400':
+          description: ''
+        '404':
+          description: ''
       tags:
         - Album
     delete:
       operationId: AlbumController_remove
+      summary: Delete album
       parameters:
         - name: id
           required: true
@@ -272,13 +352,18 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
+          description: ''
+        '400':
+          description: ''
+        '404':
           description: ''
       tags:
         - Album
   /favs:
     get:
       operationId: FavoritesController_findAll
+      summary: Get favorites
       parameters: []
       responses:
         '200':
@@ -288,6 +373,7 @@ paths:
   /favs/track/{id}:
     post:
       operationId: FavoritesController_addTrack
+      summary: Add track to favorites
       parameters:
         - name: id
           required: true
@@ -297,10 +383,15 @@ paths:
       responses:
         '201':
           description: ''
+        '404':
+          description: ''
+        '422':
+          description: ''
       tags:
         - Favorite
     delete:
       operationId: FavoritesController_removeTrack
+      summary: Delete track from favorites
       parameters:
         - name: id
           required: true
@@ -308,13 +399,18 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
+          description: ''
+        '400':
+          description: ''
+        '404':
           description: ''
       tags:
         - Favorite
   /favs/album/{id}:
     post:
       operationId: FavoritesController_addAlbum
+      summary: Add album to favorites
       parameters:
         - name: id
           required: true
@@ -324,10 +420,15 @@ paths:
       responses:
         '201':
           description: ''
+        '404':
+          description: ''
+        '422':
+          description: ''
       tags:
         - Favorite
     delete:
       operationId: FavoritesController_removeAlbum
+      summary: Delete album from favorites
       parameters:
         - name: id
           required: true
@@ -335,13 +436,18 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
+          description: ''
+        '400':
+          description: ''
+        '404':
           description: ''
       tags:
         - Favorite
   /favs/artist/{id}:
     post:
       operationId: FavoritesController_addArtist
+      summary: Add artist to favorites
       parameters:
         - name: id
           required: true
@@ -351,10 +457,15 @@ paths:
       responses:
         '201':
           description: ''
+        '404':
+          description: ''
+        '422':
+          description: ''
       tags:
         - Favorite
     delete:
       operationId: FavoritesController_removeArtist
+      summary: Delete artist from favorites
       parameters:
         - name: id
           required: true
@@ -362,13 +473,17 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
+          description: ''
+        '400':
+          description: ''
+        '404':
           description: ''
       tags:
         - Favorite
 info:
   title: "\tHome Library Service"
-  description: Oo
+  description: 'Assignment: REST Service'
   version: '1.0'
   contact: {}
 tags: []

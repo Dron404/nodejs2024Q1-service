@@ -12,11 +12,16 @@ git clone {repository URL}
 npm install
 ```
 
-## Init DB 
+## Init DB
+
 ### I user SQLite, after restarting the application the database is cleared
 
 ```
 npx prisma migrate deploy
+```
+
+```
+npx prisma generate
 ```
 
 ## Running application

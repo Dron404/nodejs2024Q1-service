@@ -9,7 +9,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('	Home Library Service')
-    .setDescription('Oo')
+    .setDescription('Assignment: REST Service')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
