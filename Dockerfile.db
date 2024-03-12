@@ -1,0 +1,9 @@
+FROM postgres:latest
+
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=mysecetpassword
+ENV POSTGRES_DB=home_db
+
+EXPOSE 5432
+
+CMD ["postgres"]

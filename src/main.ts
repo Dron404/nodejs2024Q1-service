@@ -18,7 +18,6 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
   );
-  app.enableShutdownHooks();
 
   await app.listen(PORT);
   console.log(`App start on  port - ${PORT}`);

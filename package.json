@@ -25,8 +25,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "init:db": "docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 --rm postgres",
-    "stop:db": "docker stop some-postgres"
+    "init:db": "docker build -t home_db_img -f Dockerfile.db . && docker run  -d -p 5432:5432 --name home_db home_db_img"
   },
   "dependencies": {
     "@nestjs/common": "^10.3.3",
