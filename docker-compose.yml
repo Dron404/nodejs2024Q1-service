@@ -15,13 +15,12 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgresql://postgres:mysecetpassword@db:5432/home_db
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${home_db}
     ports:
       - 4000:4000
-      - 13124:13124
     volumes:
       - app_logs:/path/to/your/app/log
-    #restart: always
+    restart: always
     networks:
       - app_bridge
     develop:
@@ -35,6 +34,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - db:/data/db
       - db_logs:/var/log/postgresql
@@ -50,5 +53,4 @@ volumes:
   app_logs:
 
 networks:
- app_bridge:
-
+  app_bridge:
