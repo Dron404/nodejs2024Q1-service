@@ -9,16 +9,16 @@
 # You can add other services your application may depend on here.
 
 services:
-  todo-app:
+  app:
     build:
       context: ./
     depends_on:
-      - database
+      - db
     environment:
-      DATABASE_URL: postgresql://postgres:mysecetpassword@database:5432/home_db
+      DATABASE_URL: postgresql://postgres:mysecetpassword@db:5432/home_db
     ports:
       - 4000:4000
-      - 35729:35729
+      - 13124:13124
     develop:
       watch:
         - path: ./src/package.json
@@ -26,14 +26,14 @@ services:
         - path: ./src
           target: /usr/src/app
           action: sync
-  database:
+  db:
     build:
       context: .
       dockerfile: Dockerfile.db
     volumes:
-      - database:/data/db
+      - db:/data/db
     ports:
       - 5432:5432
 
 volumes:
-  database:
+   db:

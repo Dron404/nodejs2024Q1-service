@@ -8,4 +8,4 @@ COPY . .
 
 EXPOSE 4000
 
-CMD npm ci && npx prisma generate && npx prisma migrate deploy && npm start
+CMD sleep 5 && npm ci && npx prisma generate && npx prisma migrate deploy && npm start
