@@ -19,6 +19,11 @@ services:
     ports:
       - 4000:4000
       - 13124:13124
+    volumes:
+      - app_logs:/path/to/your/app/log
+    restart: always
+    networks:
+      - app_bridge
     develop:
       watch:
         - path: ./src/package.json
@@ -32,8 +37,18 @@ services:
       dockerfile: Dockerfile.db
     volumes:
       - db:/data/db
+      - db_logs:/var/log/postgresql
+    restart: always
+    networks:
+      - app_bridge
     ports:
       - 5432:5432
 
 volumes:
-   db:
+  db:
+  db_logs:
+  app_logs:
+
+networks:
+ app_bridge:
+
