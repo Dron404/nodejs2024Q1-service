@@ -1,9 +1,16 @@
-import { Injectable, UnprocessableEntityException } from '@nestjs/common';
+import {
+  Injectable,
+  OnModuleInit,
+  UnprocessableEntityException,
+} from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
-export class FavoritesService {
+export class FavoritesService implements OnModuleInit {
   constructor(private readonly prisma: PrismaService) {}
+  async onModuleInit() {
+    await this.prisma.favorites.create({ data: {} });
+  }
 
   async addTrack(id: string) {
     try {

@@ -1,5 +1,14 @@
 # Home Library Service
 
+## Running application witch docker
+
+1. Install [Docker](https://docs.docker.com/engine/install/)
+2. Create `Docker Hub` account [Docker Hub](https://hub.docker.com/)
+
+```
+docker compose up -d
+```
+
 ## Downloading
 
 ```
@@ -14,7 +23,8 @@ npm install
 
 ## Init DB
 
-### I user SQLite, after restarting the application the database is cleared
+npm run docker:img:db
+npm run docker:run:db
 
 ```
 npx prisma migrate deploy
