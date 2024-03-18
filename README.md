@@ -1,5 +1,10 @@
 # Home Library Service
 
+## Running application witch docker
+
+1. Install [Docker](https://docs.docker.com/engine/install/)
+2. Create `Docker Hub` account [Docker Hub](https://hub.docker.com/)
+
 ## Downloading
 
 ```
@@ -12,23 +17,15 @@ git clone {repository URL}
 npm install
 ```
 
-## Init DB
-
-### I user SQLite, after restarting the application the database is cleared
-
-```
-npx prisma migrate deploy
-```
-
-```
-npx prisma generate
-```
-
 ## Running application
 
 ```
-npm start
+docker-compose up
 ```
+
+## Docker Hub
+[db](https://hub.docker.com/repository/docker/andreimashedo/nodejs2024q1-service-db/general)
+[app](https://hub.docker.com/repository/docker/andreimashedo/nodejs2024q1-service-app/general)
 
 ## You can use api.yaml or http://localhost:4000/doc to get Swagger documentation
 

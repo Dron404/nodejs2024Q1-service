@@ -1,20 +1,12 @@
-import {
-  Injectable,
-  OnModuleInit,
-  UnprocessableEntityException,
-} from '@nestjs/common';
+import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
-export class FavoritesService implements OnModuleInit {
+export class FavoritesService {
   constructor(private readonly prisma: PrismaService) {}
-  async onModuleInit() {
-    await this.prisma.favorites.create({ data: {} });
-  }
-
   async addTrack(id: string) {
     try {
-      const favs = await this.prisma.favorites.findFirst();
+      const favs = await this.getFavs();
       return await this.prisma.favorites.update({
         where: { id: favs.id },
         data: { tracks: { connect: { id } } },
@@ -26,7 +18,7 @@ export class FavoritesService implements OnModuleInit {
 
   async addAlbum(id: string) {
     try {
-      const favs = await this.prisma.favorites.findFirst();
+      const favs = await this.getFavs();
       await this.prisma.favorites.update({
         where: { id: favs.id },
         data: { albums: { connect: { id } } },
@@ -38,7 +30,7 @@ export class FavoritesService implements OnModuleInit {
 
   async addArtist(id: string) {
     try {
-      const favs = await this.prisma.favorites.findFirst();
+      const favs = await this.getFavs();
       await this.prisma.favorites.update({
         where: { id: favs.id },
         data: { artists: { connect: { id } } },
@@ -48,7 +40,16 @@ export class FavoritesService implements OnModuleInit {
     }
   }
 
+  async getFavs() {
+    const favs = await this.prisma.favorites.findFirst();
+    if (favs) {
+      return favs;
+    }
+    return await this.prisma.favorites.create({ data: {} });
+  }
+
   async findAll() {
+    await this.getFavs();
     return await this.prisma.favorites.findFirst({
       select: {
         artists: { select: { id: true, name: true, grammy: true } },

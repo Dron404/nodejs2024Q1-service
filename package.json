@@ -24,9 +24,7 @@
     "test:refresh": "cross-env TEST_MODE=auth jest --testPathPattern refresh.e2e.spec.ts --noStackTrace --runInBand",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "init:db": "docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 --rm postgres",
-    "stop:db": "docker stop some-postgres"
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand"
   },
   "dependencies": {
     "@nestjs/common": "^10.3.3",
@@ -44,7 +42,6 @@
     "reflect-metadata": "^0.2.1",
     "rimraf": "^5.0.5",
     "rxjs": "^7.8.1",
-    "sqlite3": "^5.1.7",
     "swagger-ui-express": "^5.0.0",
     "uuid": "^9.0.1"
   },
