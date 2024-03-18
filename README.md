@@ -5,10 +5,6 @@
 1. Install [Docker](https://docs.docker.com/engine/install/)
 2. Create `Docker Hub` account [Docker Hub](https://hub.docker.com/)
 
-```
-docker compose up -d
-```
-
 ## Downloading
 
 ```
@@ -21,23 +17,10 @@ git clone {repository URL}
 npm install
 ```
 
-## Init DB
-
-npm run docker:img:db
-npm run docker:run:db
-
-```
-npx prisma migrate deploy
-```
-
-```
-npx prisma generate
-```
-
 ## Running application
 
 ```
-npm start
+docker-compose up --build
 ```
 
 ## You can use api.yaml or http://localhost:4000/doc to get Swagger documentation

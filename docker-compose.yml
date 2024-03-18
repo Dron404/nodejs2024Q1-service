@@ -12,28 +12,29 @@ services:
   app:
     build:
       context: ./
+    develop:
+      watch:
+        - path: ./src
+          target: /app/src
+          action: sync
+        - path: package.json
+          action: rebuild
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${home_db}
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
     ports:
-      - 4000:4000
+      - ${PORT}:${PORT}
     volumes:
-      - app_logs:/path/to/your/app/log
+      - ./src:/app/src
+      - app_logs:/log/app
     restart: always
     networks:
       - app_bridge
-    develop:
-      watch:
-        - path: ./src/package.json
-          action: rebuild
-        - path: ./src
-          target: /usr/src/app
-          action: sync
   db:
     build:
       context: .
-      dockerfile: Dockerfile.db
+      dockerfile: db.Dockerfile
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
