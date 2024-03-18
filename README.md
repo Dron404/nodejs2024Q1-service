@@ -20,8 +20,12 @@ npm install
 ## Running application
 
 ```
-docker-compose up --build
+docker-compose up
 ```
+
+## Docker Hub
+[db](https://hub.docker.com/repository/docker/andreimashedo/nodejs2024q1-service-db/general)
+[app](https://hub.docker.com/repository/docker/andreimashedo/nodejs2024q1-service-app/general)
 
 ## You can use api.yaml or http://localhost:4000/doc to get Swagger documentation
 
