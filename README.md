@@ -1,9 +1,5 @@
 # Home Library Service
 
-## Running application witch docker
-
-1. Install [Docker](https://docs.docker.com/engine/install/)
-
 ## Downloading
 
 ```
@@ -16,16 +12,25 @@ git clone {repository URL}
 npm install
 ```
 
-## Running application
+## Running application witch docker
+
+1. Install [Docker](https://docs.docker.com/engine/install/)
+2. run application
 
 ```
 docker-compose up
 ```
 
-## Docker Hub
-* [db](https://hub.docker.com/repository/docker/andreimashedo/nodejs2024q1-service-db/general)
-* [app](https://hub.docker.com/repository/docker/andreimashedo/nodejs2024q1-service-app/general)
+## Vulnerabilities scanning
 
+```
+npm run audit
+```
+
+## Docker Hub
+
+- [db](https://hub.docker.com/repository/docker/andreimashedo/nodejs2024q1-service-db/general)
+- [app](https://hub.docker.com/repository/docker/andreimashedo/nodejs2024q1-service-app/general)
 
 #### You can use api.yaml or http://localhost:4000/doc to get Swagger documentation
 
