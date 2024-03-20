@@ -1,10 +1,5 @@
 # Home Library Service
 
-## Prerequisites
-
-- Git - [Download & Install Git](https://git-scm.com/downloads).
-- Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager.
-
 ## Downloading
 
 ```
@@ -17,15 +12,27 @@ git clone {repository URL}
 npm install
 ```
 
-## Running application
+## Running application witch docker
+
+1. Install [Docker](https://docs.docker.com/engine/install/)
+2. run application
 
 ```
-npm start
+docker-compose up
 ```
 
-After starting the app on port (4000 as default) you can open
-in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
-For more information about OpenAPI/Swagger please visit https://swagger.io/.
+## Vulnerabilities scanning
+
+```
+npm run audit
+```
+
+## Docker Hub
+
+- [db](https://hub.docker.com/repository/docker/andreimashedo/nodejs2024q1-service-db/general)
+- [app](https://hub.docker.com/repository/docker/andreimashedo/nodejs2024q1-service-app/general)
+
+#### You can use api.yaml or http://localhost:4000/doc to get Swagger documentation
 
 ## Testing
 
