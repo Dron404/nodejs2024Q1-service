@@ -53,7 +53,6 @@ export class AuthService {
       });
       return await this.getTokens({ id: payload.id, login: payload.login });
     } catch (e) {
-      console.log(e);
       throw new ForbiddenException(e.message);
     }
   }
