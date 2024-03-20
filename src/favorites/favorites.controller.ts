@@ -12,6 +12,7 @@ import {
 import { FavoritesService } from './favorites.service';
 import {
   ApiBadRequestResponse,
+  ApiBearerAuth,
   ApiCreatedResponse,
   ApiNoContentResponse,
   ApiNotFoundResponse,
@@ -23,6 +24,7 @@ import { AuthGuard } from 'src/guard/auth.guard';
 
 @ApiTags('Favorite')
 @UseGuards(AuthGuard)
+@ApiBearerAuth()
 @Controller('favs')
 export class FavoritesController {
   constructor(private readonly favoritesService: FavoritesService) {}
