@@ -1,4 +1,8 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { CryptoService } from 'src/crypto/crypto.service';
@@ -30,10 +34,10 @@ export class AuthService {
       throw new ForbiddenException('Invalid user login or password');
     }
 
-    return await this.getTokens({ id: user.id, login });
+    return await this.getTokens({ userId: user.id, login });
   }
 
-  async getTokens(payload: { id: string; login: string }) {
+  async getTokens(payload: { userId: string; login: string }) {
     const accessToken = await this.jwt.signAsync(payload, {
       expiresIn: this.configService.get('TOKEN_EXPIRE_TIME'),
       secret: this.configService.get('JWT_SECRET_KEY'),
@@ -47,11 +51,17 @@ export class AuthService {
   }
 
   async refresh({ refreshToken }: RefreshDto) {
+    if (!refreshToken) {
+      throw new UnauthorizedException('Refresh token is required');
+    }
     try {
       const payload = await this.jwt.verifyAsync(refreshToken, {
         secret: this.configService.get<string>('JWT_SECRET_REFRESH_KEY'),
       });
-      return await this.getTokens({ id: payload.id, login: payload.login });
+      return await this.getTokens({
+        userId: payload.userId,
+        login: payload.login,
+      });
     } catch (e) {
       throw new ForbiddenException(e.message);
     }
