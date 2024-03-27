@@ -24,7 +24,9 @@ export class AuthGuard implements CanActivate {
         throw new UnprocessableEntityException('Unexpected format');
       }
       const token = parts[1];
-      await this.jwt.verifyAsync(token);
+      await this.jwt.verifyAsync(token, {
+        secret: process.env.JWT_SECRET_REFRESH_KEY,
+      });
       return true;
     } catch {
       throw new UnauthorizedException('Unexpected token');
