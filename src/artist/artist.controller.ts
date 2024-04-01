@@ -9,12 +9,14 @@ import {
   Res,
   HttpStatus,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { ArtistService } from './artist.service';
 import { CreateArtistDto } from './dto/create-artist.dto';
 import { UpdateArtistDto } from './dto/update-artist.dto';
 import {
   ApiBadRequestResponse,
+  ApiBearerAuth,
   ApiCreatedResponse,
   ApiNoContentResponse,
   ApiNotFoundResponse,
@@ -22,8 +24,11 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
+import { AuthGuard } from 'src/guard/auth.guard';
 
 @ApiTags('Artist')
+@UseGuards(AuthGuard)
+@ApiBearerAuth()
 @Controller('artist')
 export class ArtistController {
   constructor(private readonly artistService: ArtistService) {}

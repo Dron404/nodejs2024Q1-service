@@ -5,9 +5,9 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CryptoService } from 'src/crypto/crypto.service';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -35,7 +35,6 @@ export class UserService {
       const createdAt = user.createdAt.getTime();
       return { ...user, createdAt: createdAt, updatedAt: createdAt };
     } catch (e) {
-      console.log(e);
       throw new ConflictException('This login already exists');
     }
   }
