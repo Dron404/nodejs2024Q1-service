@@ -40,7 +40,7 @@ export class CustomLogger implements LoggerService {
   }
 
   async logRequest(request: any) {
-    const message = `\n[REQUEST]:\nMethod: ${request.method}\nUrl:${request.url}\nQuery: ${JSON.stringify(request.query)}\nBody: ${JSON.stringify(request.body)}\n`;
+    const message = `\n[REQUEST]:\nMethod: ${request.method}\nUrl: ${request.url + JSON.stringify(Object.values(request.params).join()).replace(/"/g, '')}\nQuery: ${JSON.stringify(request.query)}\nBody: ${JSON.stringify(request.body)}\n`;
     this.log(message);
     await this.writeLogsToFile(message, 'logs');
   }
