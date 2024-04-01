@@ -63,7 +63,7 @@ export class AuthService {
         login: payload.login,
       });
     } catch (e) {
-      throw new ForbiddenException(e.message);
+      throw new ForbiddenException('Forbidden');
     }
   }
 }
