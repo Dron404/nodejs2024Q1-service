@@ -1,10 +1,5 @@
 # Home Library Service
 
-## Prerequisites
-
-- Git - [Download & Install Git](https://git-scm.com/downloads).
-- Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager.
-
 ## Downloading
 
 ```
@@ -17,15 +12,49 @@ git clone {repository URL}
 npm install
 ```
 
-## Running application
+## Running application witch docker
+
+### By Docker
+
+1. Install [Docker](https://docs.docker.com/engine/install/)
+2. run application
 
 ```
-npm start
+docker-compose up
 ```
 
-After starting the app on port (4000 as default) you can open
-in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
-For more information about OpenAPI/Swagger please visit https://swagger.io/.
+### By localhost
+
+1. Set valid DATABASE_URL in .env
+2. npm run start:dev | run start
+
+## Vulnerabilities scanning
+
+```
+npm run audit
+```
+
+## Logger
+
+### if you have a ERROR [Logger] Error while writing logs to file: {"errno":-2,"code":"ENOENT","syscall"...}
+
+try fix path to logs folder in ./src/logger/logger.service.ts line 69 and 86 This error may be caused by problems in the OS
+
+1. Logs level - LOG = log
+
+```
+ 1lvl     2lvl      3lvl    4lvl
+ fatal => error =>  warn =>  log
+```
+
+2. logs files size - MAX_FILE_SIZE_MB
+
+## Docker Hub
+
+- [db](https://hub.docker.com/repository/docker/andreimashedo/nodejs2024q1-service-db/general)
+- [app](https://hub.docker.com/repository/docker/andreimashedo/nodejs2024q1-service-app/general)
+
+#### You can use api.yaml or http://localhost:4000/doc to get Swagger documentation
 
 ## Testing
 

@@ -1,0 +1,64 @@
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Docker compose reference guide at
+# https://docs.docker.com/compose/compose-file/
+
+# Here the instructions define your application as two services called "todo-app" and “todo-database”
+# The service “todo-app” is built from the Dockerfile in the /app directory,
+# and the service “todo-database” uses the official MongoDB image
+# from Docker Hub - https://hub.docker.com/_/mongo.
+# You can add other services your application may depend on here.
+
+services:
+  app:
+    build:
+      context: ./
+    develop:
+      watch:
+        - path: ./src
+          target: /app/src
+          action: sync
+        - path: package.json
+          action: rebuild
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      CRYPT_SALT: ${CRYPT_SALT}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      JWT_SECRET_REFRESH_KEY: ${JWT_SECRET_REFRESH_KEY}
+      TOKEN_EXPIRE_TIME: ${TOKEN_EXPIRE_TIME}
+      TOKEN_REFRESH_EXPIRE_TIME: ${TOKEN_REFRESH_EXPIRE_TIME}
+      MAX_FILE_SIZE_MB: ${MAX_FILE_SIZE_MB}
+      LOG: ${LOG}
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - ./src:/app/src
+      - app_logs:/log/app
+    restart: always
+    networks:
+      - app_bridge
+  db:
+    build:
+      context: .
+      dockerfile: db.Dockerfile
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - db:/data/db
+      - db_logs:/var/log/postgresql
+    restart: always
+    networks:
+      - app_bridge
+    ports:
+      - 5432:5432
+
+volumes:
+  db:
+  db_logs:
+  app_logs:
+
+networks:
+  app_bridge:
